@@ -34,11 +34,11 @@ const Portfolio = () => {
   ];
 
   const openSourceProjects = [
-    { name: "pgmpy", description: "Developing Rust backend & multi-lang bindings" },
-    { name: "Haystack", description: "12 bugfix & feature PRs merged across core pipelines" },
-    { name: "Twenty (YC '23)", description: "Top 5% contributor; 7 PRs merged" },
-    { name: "Streamlit", description: "Single-component integration with 2K+ downloads" },
-    { name: "Apidash", description: "Built a video previewer for the API client" }
+    { name: "pgmpy", description: "Developing Rust backend & multi-lang bindings", url: "https://github.com/pgmpy/causalgraphs" },
+    { name: "Haystack", description: "12 bugfix & feature PRs merged across core pipelines", url: "https://github.com/deepset-ai/haystack/pulls?q=is%3Apr+is%3Amerged+author%3Amdrazak2001+" },
+    { name: "Twenty (YC '23)", description: "Top 5% contributor; 7 PRs merged", url: "https://github.com/twentyhq/twenty/pulls?q=is%3Amerged+author%3Amdrazak2001+" },
+    { name: "Streamlit", description: "Single-component integration with 2K+ downloads", url: "https://github.com/mdrazak2001/streamlit-anywidget" },
+    { name: "Apidash", description: "Built a video previewer for the API client", url: "https://github.com/foss42/apidash/pulls?q=is%3Apr+is%3Aclosed+author%3Amdrazak2001" }
   ];
 
   const skills = [
@@ -189,14 +189,24 @@ const Portfolio = () => {
           <h2 className="text-2xl font-semibold text-text-primary mb-8">Open Source Contributions</h2>
           <div className="grid gap-4">
             {openSourceProjects.map((project, index) => (
-              <div key={index} className="p-4 bg-surface-subtle hover:bg-surface-hover rounded-lg border border-border transition-colors">
+              <a 
+                key={index} 
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block p-4 bg-surface-subtle hover:bg-surface-hover rounded-lg border border-border transition-colors group"
+                aria-label={`View ${project.name} contribution`}
+              >
                 <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="font-medium text-text-primary">{project.name}</h3>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-medium text-text-primary group-hover:text-text-accent transition-colors">{project.name}</h3>
+                      <ExternalLink size={14} className="text-text-secondary group-hover:text-text-accent transition-colors" />
+                    </div>
                     <p className="text-sm text-text-secondary mt-1">{project.description}</p>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </section>
