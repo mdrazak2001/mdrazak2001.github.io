@@ -96,15 +96,15 @@ const Portfolio = () => {
       <main className="max-w-4xl mx-auto px-6 py-12">
         {/* Hero Section */}
         <section id="home" className="mb-16">
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <p className="text-sm text-text-secondary mb-2">India</p>
-          </div>
+          </div> */}
           
           <h2 className="text-2xl font-semibold text-text-primary mb-6">About</h2>
           <p className="text-text-secondary leading-relaxed max-w-2xl">
-            A highly motivated full-stack software engineer passionate about creating efficient and scalable 
-            technological solutions. Currently working at JP Morgan Chase in the Investment Bank's ETL team. 
-            Actively contributing to open-source projects to enhance skills and give back to the community.
+            
+            passionate about creating meaningful software and exploring new technologies.
+            i love building products that solve real problems and have impact on people's lives.
           </p>
         </section>
 
