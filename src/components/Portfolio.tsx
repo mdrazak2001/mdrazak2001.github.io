@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 
 const Portfolio = () => {
+
   const experiences = [
     {
       company: "JP Morgan Chase",
@@ -14,16 +15,16 @@ const Portfolio = () => {
       company: "European Summer of Code (pgmpy)",
       role: "Open Source Contributor",
       duration: "June '25 - Present",
-      location: "Part Time, India", 
+      location: "Part Time, Germany", 
       description: "Developing a high-performance Rust backend for the Python-based pgmpy library (PGMs & causal inference). Designing multi language bindings using PyO3 (Python), wasm-bindgen (JavaScript/WebAssembly), and extendr (R)."
     },
-    {
-      company: "Indian Institute of Science",
-      role: "Project Intern",
-      duration: "2023",
-      location: "India",
-      description: "Designed React Native UI/UX for Skyrax, enabling farmers to request drone services via mobile app. Implemented real-time push notifications (FCM) for service updates to 100+ pilot users."
-    }
+    // {
+    //   company: "Indian Institute of Science",
+    //   role: "Project Intern",
+    //   duration: "2023",
+    //   location: "India",
+    //   description: "Designed React Native UI/UX for Skyrax, enabling farmers to request drone services via mobile app. Implemented real-time push notifications (FCM) for service updates to 100+ pilot users."
+    // }
   ];
 
   const achievements = [
@@ -47,6 +48,18 @@ const Portfolio = () => {
     "SQL", "REST", "gRPC", "Protobufs", "Git"
   ];
 
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      const offsetTop = element.offsetTop - 100; // Scroll 100px higher
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background font-inter">
       {/* Navigation */}
@@ -56,9 +69,27 @@ const Portfolio = () => {
             <div className="flex items-center space-x-8">
               <h1 className="text-xl font-semibold text-text-primary">razak</h1>
               <div className="hidden md:flex items-center space-x-6">
-                <a href="#home" className="text-sm text-text-secondary hover:text-text-primary transition-colors">home</a>
-                <a href="#experience" className="text-sm text-text-secondary hover:text-text-primary transition-colors">experience</a>
-                <a href="#projects" className="text-sm text-text-secondary hover:text-text-primary transition-colors">projects</a>
+                <a 
+                  href="#home" 
+                  onClick={(e) => handleNavClick(e, 'home')}
+                  className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                >
+                  home
+                </a>
+                <a 
+                  href="#experience" 
+                  onClick={(e) => handleNavClick(e, 'experience')}
+                  className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                >
+                  experience
+                </a>
+                <a 
+                  href="#projects" 
+                  onClick={(e) => handleNavClick(e, 'projects')}
+                  className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                >
+                  projects
+                </a>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -91,56 +122,21 @@ const Portfolio = () => {
           </div>
         </div>
       </nav>
-
+      
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-6 py-12">
         {/* Hero Section */}
-        <section id="home" className="mb-16">
-          {/* <div className="mb-4">
-            <p className="text-sm text-text-secondary mb-2">India</p>
-          </div> */}
-          
+        <section id="home" className="mb-16">          
           <h2 className="text-2xl font-semibold text-text-primary mb-6">About</h2>
           <p className="text-text-secondary leading-relaxed max-w-2xl">
-            
-            passionate about creating meaningful software and exploring new technologies.
-            i love building products that solve real problems and have impact on people's lives.
+            i'm passionate about creating meaningful software and exploring new technologies and love building products that solve real problems and have impact on people's lives.
           </p>
         </section>
 
-        {/* GitHub Activity Placeholder */}
+        {/* GitHub Activity */}
         <section className="mb-16">
           <h2 className="text-2xl font-semibold text-text-primary mb-6">Recent GitHub Activity</h2>
-          <div className="p-6 bg-surface-subtle rounded-lg border border-border">
-            <div className="grid grid-cols-7 gap-1 mb-4">
-              {Array.from({ length: 365 }, (_, i) => (
-                <div
-                  key={i}
-                  className={`w-3 h-3 rounded-sm ${
-                    Math.random() > 0.7 
-                      ? 'bg-green-500' 
-                      : Math.random() > 0.4 
-                      ? 'bg-green-300' 
-                      : 'bg-muted'
-                  }`}
-                />
-              ))}
-            </div>
-            <div className="flex items-center justify-between text-sm text-text-secondary">
-              <span>Jan</span>
-              <span>Dec</span>
-            </div>
-            <p className="text-sm text-text-secondary mt-2">
-              <a 
-                href="https://github.com/mdrazak2001" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-text-accent hover:underline inline-flex items-center gap-1"
-              >
-                View on GitHub <ExternalLink size={12} />
-              </a>
-            </p>
-          </div>
+          <img src="http://ghchart.rshah.org/mdrazak2001" alt="2016rshah's Github chart" />
         </section>
 
         {/* Experience */}
@@ -158,7 +154,8 @@ const Portfolio = () => {
                     </p>
                   </div>
                   <div className="md:w-1/3 md:text-right">
-                    <p className="text-sm text-text-secondary">{exp.duration} — {exp.location}</p>
+                    <p className="text-sm text-text-secondary">{exp.duration}</p>
+                    <p className="text-sm text-text-secondary">{exp.location}</p>
                   </div>
                 </div>
               </div>
@@ -212,7 +209,7 @@ const Portfolio = () => {
         </section>
 
         {/* Achievements */}
-        <section className="mb-16">
+        {/* <section className="mb-16">
           <h2 className="text-2xl font-semibold text-text-primary mb-8">Achievements</h2>
           <ul className="space-y-3">
             {achievements.map((achievement, index) => (
@@ -221,7 +218,7 @@ const Portfolio = () => {
               </li>
             ))}
           </ul>
-        </section>
+        </section> */}
 
         {/* Skills */}
         <section className="mb-16">
