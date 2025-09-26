@@ -9,14 +9,14 @@ const Portfolio = () => {
       role: "Software Engineer 1",
       duration: "2023 - Present",
       location: "India",
-      description: "Currently working in Investment Bank's ETL team, contributing to the sourcing, processing, and loading of critical data used by internal bankers for trade execution. Built customer-onboarding microservices in Spring Boot & JPA, cutting average client setup time by around 80%."
+      description: "Currently working in Investment Bank's ETL team, contributing to the sourcing, processing, and loading of critical data used by internal bankers for trade execution."
     },
     {
       company: "European Summer of Code (pgmpy)",
       role: "Open Source Contributor",
       duration: "June '25 - Present",
       location: "Part Time, Germany", 
-      description: "Developing a high-performance Rust backend for the Python-based pgmpy library (PGMs & causal inference). Designing multi language bindings using PyO3 (Python), wasm-bindgen (JavaScript/WebAssembly), and extendr (R)."
+      description: "Developing a high-performance Rust backend for the Python-based pgmpy library (PGMs & causal inference) + designing multi language ffi bindings using PyO3 (Python), wasm-bindgen (JavaScript/WebAssembly), and extendr (R)."
     },
   ];
 
@@ -148,11 +148,11 @@ const Portfolio = () => {
             <div className="flex flex-col md:flex-row md:items-start gap-3">
               <div className="md:w-2/3">
                 <h3 className="font-medium text-text-primary text-sm">RV College of Engineering</h3>
-                <p className="text-xs text-text-accent font-medium">Bachelor of Technology</p>
-                <p className="text-xs text-text-secondary mt-1">
+                <p className="text-xs text-text-accent font-medium">B.Tech in Information Technology</p>
+                {/* <p className="text-xs text-text-secondary mt-1">
                   Relevant Coursework: Data Structures and Algorithms, Operating Systems, 
                   Database Management Systems, Computer Networks, Object Oriented Programming.
-                </p>
+                </p> */}
               </div>
               <div className="md:w-1/3 md:text-right">
                 <p className="text-xs text-text-secondary">2019-2023</p>
