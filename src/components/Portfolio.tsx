@@ -6,14 +6,14 @@ const Portfolio = () => {
   const experiences = [
     {
       company: "JP Morgan Chase",
-      role: "Software Engineer 1",
+      role: "Software Engineer",
       duration: "2023 - Present",
       location: "India",
       description: "Currently working in Investment Bank's ETL team, contributing to the sourcing, processing, and loading of critical data used by internal bankers for trade execution."
     },
     {
       company: "European Summer of Code (pgmpy)",
-      role: "Open Source Contributor",
+      role: "Open Source Developer",
       duration: "June '25 - Present",
       location: "Part Time, Germany", 
       description: "Developing a high-performance Rust backend for the Python-based pgmpy library (PGMs & causal inference) + designing multi language ffi bindings using PyO3 (Python), wasm-bindgen (JavaScript/WebAssembly), and extendr (R)."
