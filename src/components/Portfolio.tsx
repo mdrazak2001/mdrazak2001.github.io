@@ -56,13 +56,13 @@ const Portfolio = () => {
                 >
                   home
                 </Link>
-                {/* <Link 
+                <Link 
                   to="/blog"
                   className="text-sm text-text-secondary hover:text-text-primary transition-colors"
                 >
                   blog
                 </Link>
-                <Link 
+                {/* <Link 
                   to="/uses"
                   className="text-sm text-text-secondary hover:text-text-primary transition-colors"
                 >
@@ -70,7 +70,7 @@ const Portfolio = () => {
                 </Link> */}
               </div>
 
-              <span class="text-border/50 hidden md:inline">|</span>
+              <span className="text-border/50 hidden md:inline">|</span>
                   
               <a 
                 href="mailto:mohammedrazak2001@gmail.com" 
@@ -105,7 +105,7 @@ const Portfolio = () => {
         <section id="home" className="mb-12 flex flex-col md:flex-row gap-4">
           <h2 className="text-lg text-text-primary font-inter md:w-1/4">About</h2>
           <p className="text-text-secondary leading-relaxed md:w-3/4 text-sm">
-            i'm passionate about creating meaningful software and exploring new technologies and love building products that solve real problems and have impact on people's lives.
+            i'm passionate about creating meaningful software and exploring new technologies and love building products that solve real problems having an impact on people's lives.
           </p>
         </section>
 
