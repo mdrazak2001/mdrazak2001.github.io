@@ -169,11 +169,19 @@ const InlineCode = ({ children, ...props }: any) => {
 
 // MDX Components
 const components = {
-  h1: (props: any) => <h1 className="text-2xl font-bold mb-4 text-text-primary" {...props} />,
-  h2: (props: any) => <h2 className="text-xl font-bold mb-3 text-text-primary mt-8" {...props} />,
-  h3: (props: any) => <h3 className="text-lg font-semibold mb-2 text-text-primary mt-6" {...props} />,
-  h4: (props: any) => <h4 className="text-base font-semibold mb-2 text-text-primary mt-4" {...props} />,
-  p: (props: any) => <p className="mb-4 text-sm text-text-secondary leading-relaxed" {...props} />,
+  h1: (props: any) => (
+    <div className="relative group">
+      <h1 
+        className="font-sora text-4xl font-black mb-4 tracking-tight bg-gradient-to-r from-text-primary via-text-accent to-text-primary/70 bg-clip-text text-transparent hover:scale-105 transition-all duration-300 animate-pulse-slow" 
+        {...props} 
+      />
+      <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-text-accent to-transparent rounded-full group-hover:w-full transition-all duration-500" />
+    </div>
+  ),
+  h2: (props: any) => <h2 className="font-sora text-xl font-bold mb-3 text-text-primary mt-8" {...props} />,
+  h3: (props: any) => <h3 className="font-sora text-lg font-semibold mb-2 text-text-primary mt-6" {...props} />,
+  h4: (props: any) => <h4 className="font-sora text-base font-semibold mb-2 text-text-primary mt-4" {...props} />,
+  p: (props: any) => <p className="font-poppins mb-4 text-sm text-text-secondary leading-relaxed" {...props} />,
   code: InlineCode,
   pre: (props: any) => {
     // Extract className from code element

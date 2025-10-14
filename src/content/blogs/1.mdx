@@ -1,8 +1,24 @@
 
 # Building Multiplayer Tic-Tac-Toe with Nakama
 
+<div className="author-meta mb-8 flex items-center gap-3 pt-4  border-border/30">
+  <img 
+    src="/my_img.png" 
+    alt="Razak" 
+    className="w-12 h-12 rounded-full ring-2" 
+  />
+  <div>
+    <p className="text-sm font-medium text-text-primary">Razak</p>
+    <p className="text-xs text-text-secondary">October 14, 2025</p>
+    <p className="text-xs text-text-accent italic mt-1">Curious, tinkerer & explorer</p>
+  </div>
+</div>
 
+<br />
 
+---
+
+<br />
 
 Ever wondered how multiplayer games handle real time gameplay, matchmaking & leaderboards? If not, stay tuned, I recently built a fully functional multiplayer tic-tac-toe game to explore these concepts, lets goo!
 
@@ -14,10 +30,10 @@ So Nakama solves multiple complex problems out of the box for us like passwordle
 
 Now we can freely implement the app logic instead of worrying about infra, nakama natively handles whopping scale of approx [2M concurrently connected players (CCU)](https://heroiclabs.com/blog/code-wizards-scale-test-of-nakama-2m-ccu/)!
 
-![Architecture Diagram](/blogs/1/image.png)
-
 
 Nakama also needs a data persistence to store data in the long term. It currently is compatible with cockroach db and postgresql.<br />
+
+![news](/blogs/1/image.png)
 
 
 ## Architecture
