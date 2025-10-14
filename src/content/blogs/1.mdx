@@ -1,0 +1,141 @@
+
+# Building Multiplayer Tic-Tac-Toe with Nakama
+
+
+
+
+Ever wondered how multiplayer games handle real time gameplay, matchmaking & leaderboards? If not, stay tuned, I recently built a fully functional multiplayer tic-tac-toe game to explore these concepts, lets goo!
+
+I'm using **Nakama** as the game server and **React Native** for the mobile client, **Go** for custom game logic and finally **PostgreSQL** for data persistence.
+
+### Why Nakama though?
+
+So Nakama solves multiple complex problems out of the box for us like passwordless authentication, real time communication b/w players, matchmaking players together, fetching game state, leaderboards, player profiles, scales across multiple concurrent matches and lastly it is open source!
+
+Now we can freely implement the app logic instead of worrying about infra, nakama natively handles whopping scale of approx [2M concurrently connected players (CCU)](https://heroiclabs.com/blog/code-wizards-scale-test-of-nakama-2m-ccu/)!
+
+![Architecture Diagram](/blogs/1/image.png)
+
+
+Nakama also needs a data persistence to store data in the long term. It currently is compatible with cockroach db and postgresql.
+
+## Architecture
+
+The Http port handles stateless operations like authentication/fetching leaderboard/user profiles.
+The web socket port handles any real time match updates, player moves…
+
+![Architecture Diagram](/blogs/1/arch.png)
+
+
+
+## Some Code
+
+#### Step 1: Setting Up the Backend
+
+I used docker compose to orchestrate and spawn Nakama and PostgreSQL containers:
+
+i used docker compose to orchestrate and spawn Nakama and PostgreSQL containers:
+
+```yaml
+services:
+  postgres:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_DB: nakama
+      POSTGRES_PASSWORD: localdb
+    ports:
+      - "5432:5432"
+
+  nakama:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "7349:7349"  # gRPC
+      - "7350:7350"  # HTTP/WebSocket
+      - "7351:7351"  # Console
+```
+
+#### Step 2: Writing Custom Game Logic in Go
+Nakama allows you to write custom game logic in Go, Lua, or JavaScript. I chose Go for performance and type safety.
+The core is implementing the Match interface:
+
+
+```go
+type TicTacToeMatch struct{}
+
+func (m *TicTacToeMatch) MatchInit(ctx context.Context, ...) (interface{}, int, string) {
+    state := &GameState{
+        Board:   [9]string{},
+        Players: make(map[string]string),
+    }
+    return state, 1, "skill" // state, tickRate, label
+}
+```
+The MatchLoop function is where the magic happens - it runs every tick and processes player moves:
+
+```go
+func (m *TicTacToeMatch) MatchLoop(ctx context.Context, ..., messages []runtime.MatchData) interface{} {
+    for _, msg := range messages {
+        // Validate move
+        // Update board
+        // Check for winner
+        // Broadcast to all players
+    }
+    return gameState
+}
+```
+
+
+
+
+#### Step 3: Implementing Matchmaking
+Nakama's built-in matchmaker pairs players automatically:
+
+```typescript
+// Client requests matchmaking
+const ticket = await socket.addMatchmaker('*', 2, 2);
+
+socket.onmatchmakermatched = (matched) => {
+  // Match found! Join the game
+  await socket.joinMatch(matched.match_id);
+};
+```
+
+On the server side, we register a callback that creates a new match:
+
+```go
+initializer.RegisterMatchmakerMatched(func(...) (string, error) {
+    matchId, err := nk.MatchCreate(ctx, "tictactoe_match", ...)
+    return matchId, nil
+})
+```
+
+
+#### Step 4: Real-Time Gameplay
+When a player makes a move, it's sent to the server via WebSocket:
+
+```typescript
+// Client sends move
+socket.sendMatchState(matchId, 1, JSON.stringify({ position: 2 }));
+```
+
+The server validates and broadcasts the update to both players:
+
+```go
+// Server processes and broadcasts
+if m.isValidMove(gameState, userId, position) {
+    gameState.Board[position] = symbol
+    m.broadcastState(dispatcher, gameState, 2)
+}
+```
+
+Lets see the game in action for 4 concurrent users:
+
+
+
+Here’s the link to the github repository containing the source code: 
+
+Conclusion
+Building this game taught me a lot more than expected about distributed systems. Have any questions or wanna connect, reach out to me at my mail or X at the top, hope you learned something, thanks for reading!

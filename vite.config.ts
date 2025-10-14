@@ -1,19 +1,25 @@
+// vite.config.ts
 import { defineConfig } from "vite";
+import mdx from '@mdx-js/rollup'; // ✅ first
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
+// Remove lovable-tagger for now to isolate issue
 
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
   base: "/",
   server: {
     host: "::",
     port: 8080,
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [
+    mdx({
+      providerImportSource: "@mdx-js/react",
+    }),
+    react(), // ✅ after mdx
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-}));
+});

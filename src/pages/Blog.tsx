@@ -2,92 +2,106 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ExternalLink } from 'lucide-react';
 
-const blogPosts = [
+// Get all MDX files
+const modules = import.meta.glob('../content/blogs/*.mdx', { 
+  eager: true 
+});
+
+console.log('All modules:', modules);
+
+// Parse the modules to extract frontmatter
+const blogPosts = Object.entries(modules).map(([path, module]) => {
+  const fileName = path.split('/').pop()?.replace('.mdx', '') || '';
+  
+  // Check what properties are available on the module
+  const moduleAny = module as any;
+  console.log(`Module ${fileName}:`, moduleAny);
+  
+  // Try to get frontmatter from various possible locations
+  const frontmatter = moduleAny.frontmatter || 
+                     moduleAny.metadata || 
+                     moduleAny.attributes ||
+                     {};
+
+  return {
+    id: fileName,
+    title: frontmatter.title || 'Untitled',
+    date: frontmatter.date || 'Unknown date',
+    excerpt: frontmatter.excerpt || 'No excerpt available',
+  };
+});
+
+// Manual posts as fallback
+const manualPosts = [
   {
     id: '1',
-    title: 'Building a Rust Backend for pgmpy',
-    date: 'August 15, 2025',
-    excerpt: 'Exploring the challenges and solutions in developing a high-performance Rust backend for the pgmpy library, with multi-language bindings.'
-  },
-  {
-    id: '2',
-    title: 'Optimizing Customer Onboarding with Spring Boot',
-    date: 'July 10, 2025',
-    excerpt: 'How we reduced client setup time by 80% using Spring Boot and JPA at JP Morgan Chase.'
-  },
-  {
-    id: '3',
-    title: 'My Journey in Open Source',
-    date: 'June 5, 2025',
-    excerpt: 'Reflections on contributing to projects like Haystack, Twenty, and Streamlit.'
-  },
+    title: 'Building Multiplayer Tic-Tac-Toe with Nakama',
+    date: '2025-10-13',
+    excerpt: 'Exploring real-time multiplayer gameplay, matchmaking, and leaderboards using Nakama, React Native, Go, and PostgreSQL.'
+  }
 ];
+
+// Use manual posts since frontmatter extraction isn't working
+const postsToDisplay = manualPosts;
 
 const Blog = () => {
   return (
     <div className="min-h-screen bg-background font-inter">
       {/* Navigation */}
       <nav className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-          <div className="max-w-2xl mx-auto px-4 py-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-6">
-                <h1 className="text-lg font-medium text-text-primary">razak</h1>
-                <div className="hidden md:flex items-center space-x-4">
-                  <Link 
-                    to="/" 
-                    className="text-sm text-text-primary font-medium"
-                  >
-                    home
-                  </Link>
-                  <Link 
-                    to="/blog"
-                    className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-                  >
-                    blog
-                  </Link>
-                  {/* <Link 
-                    to="/uses"
-                    className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-                  >
-                    uses
-                  </Link> */}
-                </div>
-  
-                <span className="text-border/50 hidden md:inline">|</span>
-                    
-                <a 
-                  href="mailto:mohammedrazak2001@gmail.com" 
+        <div className="max-w-4xl mx-auto px-4 py-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-6">
+              <h1 className="text-lg font-medium text-text-primary">razak</h1>
+              <div className="hidden md:flex items-center space-x-4">
+                <Link 
+                  to="/" 
                   className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-                  aria-label="Email"
                 >
-                  email
-                </a>
-                <a 
-                  href="https://github.com/mdrazak2001" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-                  aria-label="GitHub"
+                  home
+                </Link>
+                <Link 
+                  to="/blog"
+                  className="text-sm text-text-primary font-medium"
                 >
-                  github
-                </a>
+                  blog
+                </Link>
               </div>
-              <div className="flex items-center space-x-3">
-                
-                <span className="text-sm text-text-secondary">
-                  Bengaluru / Berlin
-                </span>
-              </div>
+
+              <span className="text-border/50 hidden md:inline">|</span>
+                  
+              <a 
+                href="mailto:mohammedrazak2001@gmail.com" 
+                className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                aria-label="Email"
+              >
+                email
+              </a>
+              <a 
+                href="https://github.com/mdrazak2001" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                aria-label="GitHub"
+              >
+                github
+              </a>
+            </div>
+            <div className="flex items-center space-x-3">
+              <span className="text-sm text-text-secondary">
+                Bengaluru / Berlin
+              </span>
             </div>
           </div>
-        </nav>
+        </div>
+      </nav>
 
       {/* Main Content */}
-      <main className="max-w-2xl mx-auto px-4 py-8">
+      <main className="max-w-4xl mx-auto px-4 py-8">
         <section className="mb-12 flex flex-col md:flex-row gap-4">
           <h2 className="text-lg text-text-primary font-inter md:w-1/4">Blog</h2>
           <div className="md:w-3/4 space-y-6">
-            {blogPosts.map((post) => (
+            {postsToDisplay.map((post) => (
               <div key={post.id} className="group">
                 <Link 
                   to={`/blog/${post.id}`}
