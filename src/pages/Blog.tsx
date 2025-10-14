@@ -46,17 +46,17 @@ const postsToDisplay = manualPosts;
 
 const Blog = () => {
   return (
-    <div className="min-h-screen bg-background font-inter">
+    <div className="min-h-screen bg-background font-poppins">
       {/* Navigation */}
       <nav className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-6">
-              <h1 className="text-lg font-medium text-text-primary">razak</h1>
+              <h1 className="text-lg font-medium text-text-primary font-sora">razak</h1>
               <div className="hidden md:flex items-center space-x-4">
                 <Link 
                   to="/" 
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                  className="text-sm text-text-secondary hover:text-text-primary transition-colors font-extralight"
                 >
                   home
                 </Link>
@@ -72,7 +72,7 @@ const Blog = () => {
                   
               <a 
                 href="mailto:mohammedrazak2001@gmail.com" 
-                className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                className="text-sm text-text-secondary hover:text-text-primary transition-colors font-extralight"
                 aria-label="Email"
               >
                 email
@@ -81,14 +81,14 @@ const Blog = () => {
                 href="https://github.com/mdrazak2001" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                className="text-sm text-text-secondary hover:text-text-primary transition-colors font-extralight"
                 aria-label="GitHub"
               >
                 github
               </a>
             </div>
             <div className="flex items-center space-x-3">
-              <span className="text-sm text-text-secondary">
+              <span className="text-sm text-text-secondary font-extralight">
                 Bengaluru / Berlin
               </span>
             </div>
@@ -99,7 +99,7 @@ const Blog = () => {
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 py-8">
         <section className="mb-12 flex flex-col md:flex-row gap-4">
-          <h2 className="text-lg text-text-primary font-inter md:w-1/4">Blog</h2>
+          <h2 className="text-lg text-text-primary font-sora md:w-1/4">Blog</h2>
           <div className="md:w-3/4 space-y-6">
             {postsToDisplay.map((post) => (
               <div key={post.id} className="group">
@@ -113,8 +113,8 @@ const Blog = () => {
                         <h3 className="font-medium text-text-primary group-hover:text-text-accent transition-colors text-sm">{post.title}</h3>
                         <ExternalLink size={12} className="text-text-secondary group-hover:text-text-accent transition-colors" />
                       </div>
-                      <p className="text-xs text-text-secondary mt-1">{post.date}</p>
-                      <p className="text-xs text-text-secondary mt-1 leading-relaxed">{post.excerpt}</p>
+                      <p className="text-xs text-text-secondary mt-1 font-extralight">{post.date}</p>
+                      <p className="text-xs text-text-secondary mt-1 leading-relaxed font-extralight">{post.excerpt}</p>
                     </div>
                   </div>
                 </Link>

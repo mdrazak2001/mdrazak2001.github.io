@@ -172,7 +172,7 @@ const components = {
   h1: (props: any) => (
     <div className="relative group">
       <h1 
-        className="font-sora text-4xl font-black mb-4 tracking-tight bg-gradient-to-r from-text-primary via-text-accent to-text-primary/70 bg-clip-text text-transparent hover:scale-105 transition-all duration-300 animate-pulse-slow" 
+        className="font-sora text-4xl font-black mb-4 tracking-tight bg-gradient-to-r from-text-primary via-text-accent to-text-primary/70 bg-clip-text hover:scale-105 transition-all duration-300 animate-pulse-slow" 
         {...props} 
       />
       <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-text-accent to-transparent rounded-full group-hover:w-full transition-all duration-500" />

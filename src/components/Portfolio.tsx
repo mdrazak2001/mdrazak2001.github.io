@@ -42,13 +42,13 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background font-inter">
+    <div className="min-h-screen bg-background font-poppins"> {/* Changed from font-inter */}
       {/* Navigation */}
       <nav className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-2xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-6">
-              <h1 className="text-lg font-medium text-text-primary">razak</h1>
+              <h1 className="text-lg font-medium text-text-primary font-poppins">razak</h1> {/* Added font-poppins for consistency with blog */}
               <div className="hidden md:flex items-center space-x-4">
                 <Link 
                   to="/" 
@@ -103,15 +103,15 @@ const Portfolio = () => {
       <main className="max-w-2xl mx-auto px-4 py-8">
         {/* Hero Section */}
         <section id="home" className="mb-12 flex flex-col md:flex-row gap-4">
-          <h2 className="text-lg text-text-primary font-inter md:w-1/4">About</h2>
-          <p className="text-text-secondary leading-relaxed md:w-3/4 text-sm">
+          <h2 className="text-lg text-text-primary font-poppins md:w-1/4">About</h2> {/* Changed from font-inter */}
+          <p className="text-text-secondary leading-relaxed md:w-3/4 text-sm font-extralight"> {/* Added font-extralight */}
             i'm passionate about creating meaningful software and exploring new technologies and love building products that solve real problems having an impact on people's lives.
           </p>
         </section>
 
         {/* GitHub Activity */}
         <section className="mb-12 flex flex-col md:flex-row gap-4">
-          <h2 className="text-lg text-text-primary font-inter md:w-1/4">Recent GitHub Activity</h2>
+          <h2 className="text-lg text-text-primary font-poppins md:w-1/4">Recent GitHub Activity</h2>
           <div className="md:w-3/4">
             <img src="http://ghchart.rshah.org/mdrazak2001" alt="2016rshah's Github chart" className="w-full h-auto" />
           </div>
@@ -119,7 +119,7 @@ const Portfolio = () => {
 
         {/* Experience */}
         <section id="experience" className="mb-12 flex flex-col md:flex-row gap-4">
-          <h2 className="text-lg text-text-primary font-inter md:w-1/4">Experience</h2>
+          <h2 className="text-lg text-text-primary font-poppins md:w-1/4">Experience</h2>
           <div className="md:w-3/4 space-y-6">
             {experiences.map((exp, index) => (
               <div key={index} className="group">
@@ -127,7 +127,7 @@ const Portfolio = () => {
                   <div className="md:w-2/3">
                     <h3 className="font-medium text-text-primary text-sm">{exp.company}</h3>
                     <p className="text-xs text-text-accent font-medium">{exp.role}</p>
-                    <p className="text-xs text-text-secondary mt-1 leading-relaxed">
+                    <p className="text-xs text-text-secondary mt-1 leading-relaxed font-extralight">
                       {exp.description}
                     </p>
                   </div>
@@ -143,7 +143,7 @@ const Portfolio = () => {
 
         {/* Education */}
         <section className="mb-12 flex flex-col md:flex-row gap-4">
-          <h2 className="text-lg text-text-primary font-inter md:w-1/4">Education</h2>
+          <h2 className="text-lg text-text-primary font-poppins md:w-1/4">Education</h2>
           <div className="md:w-3/4">
             <div className="flex flex-col md:flex-row md:items-start gap-3">
               <div className="md:w-2/3">
@@ -163,7 +163,7 @@ const Portfolio = () => {
 
         {/* Open Source Projects */}
         <section id="projects" className="mb-12 flex flex-col md:flex-row gap-4">
-          <h2 className="text-lg text-text-primary font-inter md:w-1/4">Open Source Contributions</h2>
+          <h2 className="text-lg text-text-primary font-poppins md:w-1/4">Open Source Contributions</h2>
           <div className="md:w-3/4 grid gap-3">
             {openSourceProjects.map((project, index) => (
               <a 
@@ -202,7 +202,7 @@ const Portfolio = () => {
 
         {/* Skills */}
         <section className="mb-12 flex flex-col md:flex-row gap-4">
-          <h2 className="text-lg text-text-primary font-inter md:w-1/4">Skills</h2>
+          <h2 className="text-lg text-text-primary font-poppins md:w-1/4">Skills</h2>
           <div className="md:w-3/4 flex flex-wrap gap-1.5">
             {skills.map((skill, index) => (
               <span
