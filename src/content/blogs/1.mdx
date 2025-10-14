@@ -17,12 +17,12 @@ Now we can freely implement the app logic instead of worrying about infra, nakam
 ![Architecture Diagram](/blogs/1/image.png)
 
 
-Nakama also needs a data persistence to store data in the long term. It currently is compatible with cockroach db and postgresql.
+Nakama also needs a data persistence to store data in the long term. It currently is compatible with cockroach db and postgresql.<br />
+
 
 ## Architecture
 
-The Http port handles stateless operations like authentication/fetching leaderboard/user profiles.
-The web socket port handles any real time match updates, player moves…
+The **HTTP/gRPC** port handles stateless operations like authentication, fetching leaderboard, user profiles. While the **web socket** port handles any real time match updates, player moves, broadcasts, ..
 
 ![Architecture Diagram](/blogs/1/arch.png)
 
@@ -33,8 +33,6 @@ The web socket port handles any real time match updates, player moves…
 #### Step 1: Setting Up the Backend
 
 I used docker compose to orchestrate and spawn Nakama and PostgreSQL containers:
-
-i used docker compose to orchestrate and spawn Nakama and PostgreSQL containers:
 
 ```yaml
 services:
@@ -137,5 +135,6 @@ Lets see the game in action for 4 concurrent users:
 
 Here’s the link to the github repository containing the source code: 
 
-Conclusion
-Building this game taught me a lot more than expected about distributed systems. Have any questions or wanna connect, reach out to me at my mail or X at the top, hope you learned something, thanks for reading!
+## Ending thoughts
+Building this game taught me a lot more than expected about distributed systems, expecially web sockets and concurrent gameplay.
+If you have any questions or wanna connect, reach out to me at my mail or X at the top, hope you learned something, thanks for reading!
