@@ -49,7 +49,7 @@ const Navbar = () => {
             <div className="flex items-center space-x-3 md:hidden">
               <Link 
                 to="/" 
-                className="p-1.5 text-xs text-text-primary transition-colors"
+                className="p-1.5 text-sm text-text-primary transition-colors"
                 aria-label="Home"
               >
                 {/* <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -60,7 +60,7 @@ const Navbar = () => {
               </Link>
               <Link 
                 to="/blog"
-                className="p-1.5 text-xs text-text-secondary hover:text-text-primary transition-colors"
+                className="p-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors"
                 aria-label="Blog"
               >
                 {/* <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
