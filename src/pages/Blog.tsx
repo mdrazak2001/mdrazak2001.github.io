@@ -38,7 +38,7 @@ const manualPosts = [
   {
     id: '1',
     title: 'Building Multiplayer Tic-Tac-Toe with Nakama',
-    date: '2025-10-14',
+    date: '2025-10-15',
     excerpt: 'Exploring real-time multiplayer gameplay, matchmaking, and leaderboards using Nakama, React Native, Go, and PostgreSQL.'
   }
 ];
