@@ -24,9 +24,7 @@ const Navbar = () => {
               >
                 blog
               </Link>
-
               <span className="text-border/50">|</span>
-                  
               <a 
                 href="mailto:mohammedrazak2001@gmail.com" 
                 className="text-sm text-text-secondary hover:text-text-primary transition-colors"
@@ -45,17 +43,13 @@ const Navbar = () => {
               </a>
             </div>
 
-            {/* Mobile Navigation Icons */}
+            {/* Mobile Navigation Links and Icons */}
             <div className="flex items-center space-x-3 md:hidden">
               <Link 
                 to="/" 
                 className="p-1.5 text-sm text-text-primary transition-colors"
                 aria-label="Home"
               >
-                {/* <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg> */}
                 home
               </Link>
               <Link 
@@ -63,15 +57,9 @@ const Navbar = () => {
                 className="p-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors"
                 aria-label="Blog"
               >
-                {/* <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                </svg> */}
                 blog
               </Link>
-              
               <span className="text-border/50">|</span>
-              
               <a 
                 href="mailto:mohammedrazak2001@gmail.com" 
                 className="p-1.5 text-text-secondary hover:text-text-primary transition-colors"
@@ -88,21 +76,18 @@ const Navbar = () => {
               >
                 <Github size={16} />
               </a>
-              <div className="flex items-center space-x-2">
-                <span className="text-xs text-text-secondary sm:inline">
-                 Bengaluru Berlin
-                </span>
-              </div>
+              <span className="text-xs text-text-secondary md:hidden">
+                Bengaluru / Berlin
+              </span>
             </div>
           </div>
 
+          {/* Desktop Location Text */}
           <div className="flex items-center space-x-3">
-            <span className="text-sm text-text-secondary hidden sm:inline">
+            <span className="text-sm text-text-secondary hidden md:inline">
               Bengaluru / Berlin
             </span>
           </div>
-
-          
         </div>
       </div>
     </nav>
