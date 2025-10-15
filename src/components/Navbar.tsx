@@ -49,7 +49,7 @@ const Navbar = () => {
             <div className="flex items-center space-x-3 md:hidden">
               <Link 
                 to="/" 
-                className="p-1.5 text-text-primary transition-colors"
+                className="p-1.5 text-xs text-text-primary transition-colors"
                 aria-label="Home"
               >
                 {/* <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -60,7 +60,7 @@ const Navbar = () => {
               </Link>
               <Link 
                 to="/blog"
-                className="p-1.5 text-text-secondary hover:text-text-primary transition-colors"
+                className="p-1.5 text-xs text-text-secondary hover:text-text-primary transition-colors"
                 aria-label="Blog"
               >
                 {/* <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -88,14 +88,21 @@ const Navbar = () => {
               >
                 <Github size={16} />
               </a>
+              <div className="flex items-center space-x-2">
+                <span className="text-xs text-text-secondary sm:inline">
+                 Bengaluru Berlin
+                </span>
+              </div>
             </div>
           </div>
 
           <div className="flex items-center space-x-3">
-            <span className="text-sm text-text-secondary sm:inline">
+            <span className="text-sm text-text-secondary hidden sm:inline">
               Bengaluru / Berlin
             </span>
           </div>
+
+          
         </div>
       </div>
     </nav>
