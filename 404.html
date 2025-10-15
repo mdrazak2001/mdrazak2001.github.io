@@ -2,23 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Razak</title>
-    <script>
-      // Redirect to index.html but preserve the URL for React Router
-      sessionStorage.redirect = location.href;
-    </script>
-    <script>
-      // If already on index.html, restore the original URL from sessionStorage
-      const redirectTo = sessionStorage.redirect || "/";
-      delete sessionStorage.redirect;
-      if (redirectTo !== location.pathname) {
-        history.replaceState(null, null, redirectTo);
-      }
+    <title>Single Page Apps for GitHub Pages</title>
+    <script type="text/javascript">
+      // Redirect to index.html for all routes
+      var pathSegmentsToKeep = 1;
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
     </script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
