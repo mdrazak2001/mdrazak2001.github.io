@@ -1,8 +1,17 @@
-import React, { useEffect } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, Coffee } from 'lucide-react';
+import React, { useState } from 'react';
+import { Github, Linkedin, Mail, ExternalLink, Coffee, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
+import Footer from './Footer'
+
 
 const Portfolio = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   const experiences = [
     {
       company: "JP Morgan Chase",
@@ -15,16 +24,9 @@ const Portfolio = () => {
       company: "European Summer of Code (pgmpy)",
       role: "Open Source Developer",
       duration: "June '25 - Present",
-      location: "Part Time, Germany", 
+      location: "Part Time, Germany",
       description: "Developing a high-performance Rust backend for the Python-based pgmpy library (PGMs & causal inference) + designing multi language ffi bindings using PyO3 (Python), wasm-bindgen (JavaScript/WebAssembly), and extendr (R)."
     },
-  ];
-
-  const achievements = [
-    "AWS DeepRacer - Runner up in JPMC Bengaluru Tech Center, Top 15 JPMC Global",
-    "CNI Hackathon (DS Track) - Winner",
-    "CFG Hackathon - Winner",
-    "Research Publication - Prediction of Drug-Drug Interactions Using Support Vector Machine"
   ];
 
   const openSourceProjects = [
@@ -36,75 +38,22 @@ const Portfolio = () => {
   ];
 
   const skills = [
-    "Java", "Python", "Rust", "JavaScript", "TypeScript", 
-    "React", "Angular", "Spring Boot", "Docker", "AWS", 
+    "Java", "Python", "Rust", "JavaScript", "TypeScript",
+    "React", "Angular", "Spring Boot", "Docker", "AWS",
     "SQL", "REST", "gRPC", "Protobufs", "Git"
   ];
 
   return (
-    <div className="min-h-screen bg-background font-poppins"> {/* Changed from font-inter */}
+    <div className="min-h-screen bg-background font-poppins">
       {/* Navigation */}
-      <nav className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-2xl mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-6">
-              <h1 className="text-lg font-medium text-text-primary font-poppins">razak</h1> {/* Added font-poppins for consistency with blog */}
-              <div className="hidden md:flex items-center space-x-4">
-                <Link 
-                  to="/" 
-                  className="text-sm text-text-primary font-medium"
-                >
-                  home
-                </Link>
-                <Link 
-                  to="/blog"
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-                >
-                  blog
-                </Link>
-                {/* <Link 
-                  to="/uses"
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-                >
-                  uses
-                </Link> */}
-              </div>
-
-              <span className="text-border/50 hidden md:inline">|</span>
-                  
-              <a 
-                href="mailto:mohammedrazak2001@gmail.com" 
-                className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-                aria-label="Email"
-              >
-                email
-              </a>
-              <a 
-                href="https://github.com/mdrazak2001" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-                aria-label="GitHub"
-              >
-                github
-              </a>
-            </div>
-            <div className="flex items-center space-x-3">
-              
-              <span className="text-sm text-text-secondary">
-                Bengaluru / Berlin
-              </span>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
       
       {/* Main Content */}
       <main className="max-w-2xl mx-auto px-4 py-8">
         {/* Hero Section */}
         <section id="home" className="mb-12 flex flex-col md:flex-row gap-4">
-          <h2 className="text-lg text-text-primary font-poppins md:w-1/4">About</h2> {/* Changed from font-inter */}
-          <p className="text-text-secondary leading-relaxed md:w-3/4 text-sm font-extralight"> {/* Added font-extralight */}
+          <h2 className="text-lg text-text-primary font-poppins md:w-1/4">About</h2>
+          <p className="text-text-secondary leading-relaxed md:w-3/4 text-sm font-extralight">
             i'm passionate about creating meaningful software and exploring new technologies and love building products that solve real problems having an impact on people's lives.
           </p>
         </section>
@@ -149,10 +98,6 @@ const Portfolio = () => {
               <div className="md:w-2/3">
                 <h3 className="font-medium text-text-primary text-sm">RV College of Engineering</h3>
                 <p className="text-xs text-text-accent font-medium">B.Tech in Information Technology</p>
-                {/* <p className="text-xs text-text-secondary mt-1">
-                  Relevant Coursework: Data Structures and Algorithms, Operating Systems, 
-                  Database Management Systems, Computer Networks, Object Oriented Programming.
-                </p> */}
               </div>
               <div className="md:w-1/3 md:text-right">
                 <p className="text-xs text-text-secondary">2019-2023</p>
@@ -188,18 +133,6 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* Achievements */}
-        {/* <section className="mb-12 flex flex-col md:flex-row gap-4">
-          <h2 className="text-lg text-text-primary font-inter md:w-1/4">Achievements</h2>
-          <ul className="md:w-3/4 space-y-2">
-            {achievements.map((achievement, index) => (
-              <li key={index} className="text-text-secondary text-xs leading-relaxed">
-                • {achievement}
-              </li>
-            ))}
-          </ul>
-        </section> */}
-
         {/* Skills */}
         <section className="mb-12 flex flex-col md:flex-row gap-4">
           <h2 className="text-lg text-text-primary font-poppins md:w-1/4">Skills</h2>
@@ -215,79 +148,8 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* Contact */}
-        {/* <section className="pt-6 border-t border-border flex flex-col md:flex-row gap-4">
-          <h2 className="text-lg text-text-primary font-inter md:w-1/4">Contact</h2>
-          <div className="md:w-3/4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-            <div>
-              <p className="text-text-secondary text-xs">
-                Let's connect and build something amazing together.
-              </p>
-            </div>
-            <div className="flex items-center space-x-3">
-              <a
-                href="mailto:mohammedrazak2001@gmail.com"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors text-xs font-medium"
-              >
-                <Mail size={14} />
-                Get in touch
-              </a>
-              <a
-                href="https://github.com/mdrazak2001"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1.5 text-text-secondary hover:text-text-primary transition-colors"
-                aria-label="GitHub"
-              >
-                <Github size={16} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/marazakw/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1.5 text-text-secondary hover:text-text-primary transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={16} />
-              </a>
-            </div>
-          </div>
-        </section> */}
-        <footer className="border-t border-border/20 mt-16">
-          <div className="max-w-2xl mx-auto px-4 py-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="text-sm text-text-secondary">
-                © {new Date().getFullYear()} Mohammed Razak
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <a
-                  href="mailto:mohammedrazak2001@gmail.com"
-                  className="text-text-secondary hover:text-text-primary transition-colors"
-                >
-                  <Mail size={16} />
-                </a>
-                <a
-                  href="https://github.com/mdrazak2001"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-text-secondary hover:text-text-primary transition-colors"
-                >
-                  <Github size={16} />
-                </a>
-                <a
-                  href="https://buymeacoffee.com/mohammedrap"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-sm text-amber-600 hover:text-amber-700 transition-colors"
-                >
-                  <Coffee size={14} />
-                  Buy me a coffee
-                </a>
-              </div>
-            </div>
-          </div>
-        </footer>
+        {/* Footer */}
+        <Footer />
       </main>
     </div>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, ExternalLink, Coffee } from 'lucide-react';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 // Get all MDX files
 const modules = import.meta.glob('../content/blogs/*.mdx', { 
@@ -48,53 +50,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-background font-poppins">
       {/* Navigation */}
-      <nav className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-6">
-              <h1 className="text-lg font-medium text-text-primary font-sora">razak</h1>
-              <div className="hidden md:flex items-center space-x-4">
-                <Link 
-                  to="/" 
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors font-extralight"
-                >
-                  home
-                </Link>
-                <Link 
-                  to="/blog"
-                  className="text-sm text-text-primary font-medium"
-                >
-                  blog
-                </Link>
-              </div>
-
-              <span className="text-border/50 hidden md:inline">|</span>
-                  
-              <a 
-                href="mailto:mohammedrazak2001@gmail.com" 
-                className="text-sm text-text-secondary hover:text-text-primary transition-colors font-extralight"
-                aria-label="Email"
-              >
-                email
-              </a>
-              <a 
-                href="https://github.com/mdrazak2001" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-sm text-text-secondary hover:text-text-primary transition-colors font-extralight"
-                aria-label="GitHub"
-              >
-                github
-              </a>
-            </div>
-            <div className="flex items-center space-x-3">
-              <span className="text-sm text-text-secondary font-extralight">
-                Bengaluru / Berlin
-              </span>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 py-8">
@@ -122,41 +78,9 @@ const Blog = () => {
             ))}
           </div>
         </section>
-        <footer className="border-t border-border/20 mt-16">
-          <div className="max-w-2xl mx-auto px-4 py-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="text-sm text-text-secondary">
-                © {new Date().getFullYear()} Mohammed Razak
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <a
-                  href="mailto:mohammedrazak2001@gmail.com"
-                  className="text-text-secondary hover:text-text-primary transition-colors"
-                >
-                  <Mail size={16} />
-                </a>
-                <a
-                  href="https://github.com/mdrazak2001"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-text-secondary hover:text-text-primary transition-colors"
-                >
-                  <Github size={16} />
-                </a>
-                <a
-                  href="https://buymeacoffee.com/mohammedrap"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-sm text-amber-600 hover:text-amber-700 transition-colors"
-                >
-                  <Coffee size={14} />
-                  Buy me a coffee
-                </a>
-              </div>
-            </div>
-          </div>
-        </footer>
+
+        <Footer />
+      
       </main>
     </div>
   );
