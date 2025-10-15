@@ -1,14 +1,21 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- CRITICAL: This must be the FIRST script -->
     <script>
-      // Check if we're being redirected from 404
       (function() {
-        var redirectPath = sessionStorage.getItem('redirectPath');
-        console.log("404 redirecting");
-        if (redirectPath) {
-          sessionStorage.removeItem('redirectPath');
-          history.replaceState(null, null, redirectPath);
+        // Check for redirect from 404.html
+        var redirect = sessionStorage.getItem('__gh_pages_redirect__');
+        
+        if (redirect && redirect !== '/') {
+          console.log('Restoring path from 404:', redirect);
+          sessionStorage.removeItem('__gh_pages_redirect__');
+          
+          // Use replaceState to set the correct URL without page reload
+          history.replaceState(null, null, redirect);
+          
+          // Dispatch a custom event that React Router can listen to
+          window.dispatchEvent(new Event('popstate'));
         }
       })();
     </script>
