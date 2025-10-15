@@ -1,6 +1,17 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      // Check if we're being redirected from 404
+      (function() {
+        var redirectPath = sessionStorage.getItem('redirectPath');
+        console.log("404 redirecting");
+        if (redirectPath) {
+          sessionStorage.removeItem('redirectPath');
+          history.replaceState(null, null, redirectPath);
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/jpeg" href="/my_img.png" />
@@ -26,6 +37,7 @@
     <!-- <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="/preview.jpg" /> -->
   </head>
+
 
   <body>
     <div id="root"></div>
