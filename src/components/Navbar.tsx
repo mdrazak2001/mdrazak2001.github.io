@@ -1,11 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Github, Mail } from 'lucide-react';
 
 const Navbar = () => {
+  const location = useLocation();
+
+  // Highlight home for exact match, blog for /blog or /blog/*
+  const isHomeActive = location.pathname === '/';
+  const isBlogActive = location.pathname.startsWith('/blog');
+
+  // Set max-width based on route
+  const navMaxWidth = isHomeActive ? 'max-w-2xl' : 'max-w-4xl';
+
   return (
     <nav className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-      <div className="max-w-4xl mx-auto px-4 py-3">
+      <div className={`${navMaxWidth} mx-auto px-4 py-3`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
             <h1 className="text-lg font-medium text-text-primary font-poppins">razak</h1>
@@ -14,13 +23,17 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-4">
               <Link 
                 to="/" 
-                className="text-sm text-text-primary font-medium"
+                className={`text-sm font-medium transition-colors ${
+                  isHomeActive ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
+                }`}
               >
                 home
               </Link>
               <Link 
                 to="/blog"
-                className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                className={`text-sm font-medium transition-colors ${
+                  isBlogActive ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
+                }`}
               >
                 blog
               </Link>
@@ -47,14 +60,18 @@ const Navbar = () => {
             <div className="flex items-center space-x-3 md:hidden">
               <Link 
                 to="/" 
-                className="p-1.5 text-sm text-text-primary transition-colors"
+                className={`p-1.5 text-sm font-medium transition-colors ${
+                  isHomeActive ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
+                }`}
                 aria-label="Home"
               >
                 home
               </Link>
               <Link 
                 to="/blog"
-                className="p-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors"
+                className={`p-1.5 text-sm font-medium transition-colors ${
+                  isBlogActive ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
+                }`}
                 aria-label="Blog"
               >
                 blog
