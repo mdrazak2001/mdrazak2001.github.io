@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Github, Mail } from 'lucide-react';
+import { Github, Mail, Linkedin } from 'lucide-react';
 
 const Navbar = () => {
   const location = useLocation();
@@ -54,10 +54,19 @@ const Navbar = () => {
               >
                 github
               </a>
+              <a 
+                href="https://x.com/itisRazak" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-xs text-text-secondary hover:text-text-primary transition-colors"
+                aria-label="X"
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+              </a>
             </div>
 
             {/* Mobile Navigation Links and Icons */}
-            <div className="flex items-center space-x-3 md:hidden">
+            <div className="flex items-center space-x-2 md:hidden">
               <Link 
                 to="/" 
                 className={`p-1.5 text-sm font-medium transition-colors ${
@@ -92,6 +101,15 @@ const Navbar = () => {
                 aria-label="GitHub"
               >
                 <Github size={16} />
+              </a>
+              <a 
+                href="https://x.com/itisRazak" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-1.5 text-text-secondary hover:text-text-primary transition-colors"
+                aria-label="X"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
               </a>
               <span className="text-xs text-text-secondary md:hidden">
                 Bengaluru / Berlin
